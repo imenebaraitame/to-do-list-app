@@ -2,16 +2,17 @@ import {useState} from 'react';
 
 function List(){
     const [inputTask, setInputTask] = useState("");
-    const [addedTask, setAddedTask] = useState("");
+    const [tasks, setTasks] = useState([]);
 
     const handleTnputChange = (e) => {
         setInputTask(e.target.value);
     };  
     const addTask = ()=> {
-        setAddedTask(inputTask);
+        const arryTask = [...tasks, inputTask];
+        setTasks(arryTask);
         setInputTask("");
-    }
-
+    };
+    
     return(
         <>
             <div className="input-container">
@@ -20,7 +21,12 @@ function List(){
             </div>
             <div className="list-container">
                 <div className="task-container">
-                    <p id="task-info">Task:{addedTask}</p>
+                    {
+                        tasks.map((task,index) => (
+                            <p id="task-info" key={index}>{task}</p>
+                        ))
+                    }
+                    
                 </div>
             </div>
         </>   
