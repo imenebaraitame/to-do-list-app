@@ -14,6 +14,11 @@ function List(){
         ]);
         setInputTask("");
     };
+    const deleteTask = (id) => {
+        setTasks(prev => 
+            prev.filter(task =>task.id !== id)
+        );
+    }
     
     return(
         <>
@@ -26,13 +31,14 @@ function List(){
                     {
                         tasks.map(task => (
                             <div key={task.id}>
-                                <label htmlFor={`task-${task.id}`} >{task.text}</label>
-                                <input type="checkbox" id={`task-${task.id}`}/>
+                                <label htmlFor="note" >{task.text}</label>
+                                <input type="checkbox" id="note"/>
+                                <button onClick={() => deleteTask(task.id)}>Delete</button>
                             </div>    
                            
                         ))
+                       
                     }
-                    
                 </div>
             </div>
         </>   
