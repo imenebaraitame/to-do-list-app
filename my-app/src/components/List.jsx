@@ -14,7 +14,7 @@ function List(){
         if(editingId === null) {
             setTasks(prev => [
                 ...prev,
-                { id: Date.now(), text: inputTask }
+                { id: Date.now(), text: inputTask , completed: false}
             ]);
         } else {
             setTasks(prev =>
@@ -31,11 +31,20 @@ function List(){
         setTasks(prev => 
             prev.filter(task =>task.id !== id)
         );
-    }
+    };
+
     const editTask = (task) => {
         setInputTask(task.text || "");
         setEditingId(task.id);
-    }
+    };
+
+    const toggleCompleted = (id) => {
+        setTasks(prev =>
+            prev.map(task =>
+                task.id === id ? { ...task, completed: !task.completed } : task
+            )
+        );
+    };
     
     return(
         <>
@@ -49,15 +58,15 @@ function List(){
                 <div className="task-container">
                     {
                         tasks.map(task => (
-                            <div key={task.id}>
-                                <label htmlFor="note" >{task.text}</label>
-                                <input type="checkbox" id="note"/>
+                            <div key={task.id} className="task-item">
+                                <input type="checkbox" id="note"  checked={task.completed} onChange={() => toggleCompleted(task.id)}/>
+                                <label htmlFor="note" className={task.completed ? "completed" : ""}>
+                                    {task.text}
+                                </label>
                                 <button onClick={() => deleteTask(task.id)}>Delete</button>
                                 <button onClick={() => editTask(task)}>Edit</button>
-                            </div>    
-                           
-                        ))
-                       
+                            </div>     
+                        )) 
                     }
                 </div>
             </div>
