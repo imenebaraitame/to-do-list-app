@@ -8,8 +8,10 @@ function List(){
         setInputTask(e.target.value);
     };  
     const addTask = ()=> {
-        const arryTask = [...tasks, inputTask];
-        setTasks(arryTask);
+        setTasks(prev => [
+            ...prev,
+            { id: Date.now(), text: inputTask }
+        ]);
         setInputTask("");
     };
     
@@ -17,13 +19,17 @@ function List(){
         <>
             <div className="input-container">
                 <input id="input-task" type="text" value={inputTask} onChange={handleTnputChange}/>
-                <button id="btn-Add" onClick={addTask}>Add</button>
+                <button className="btn-add" onClick={addTask}>Add</button>
             </div>
             <div className="list-container">
                 <div className="task-container">
                     {
-                        tasks.map((task,index) => (
-                            <p id="task-info" key={index}>{task}</p>
+                        tasks.map(task => (
+                            <div key={task.id}>
+                                <label htmlFor={`task-${task.id}`} >{task.text}</label>
+                                <input type="checkbox" id={`task-${task.id}`}/>
+                            </div>    
+                           
                         ))
                     }
                     
