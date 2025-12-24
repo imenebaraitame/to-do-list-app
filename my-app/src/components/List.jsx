@@ -48,28 +48,38 @@ function List(){
     
     return(
         <>
-            <div className="input-container">
-                <input id="input-task" type="text" value={inputTask} onChange={handleTnputChange} placeholder="Enter a task..."/>
-                <button className="btn-add" onClick={addTask}>
-                    {editingId === null ? "Add" : "Update"}
-                </button>
-            </div>
-            <div className="list-container">
+            <div className="todo-wrapper">
+                <h1 className='title'>TODO LIST</h1>
+                <div className="input-container">
+                    <input type="text" value={inputTask} onChange={handleTnputChange} placeholder="Enter a task..."/>
+                    <button className="btn-add" onClick={addTask}>
+                        {editingId === null ? "Add" : "Update"}
+                    </button>
+                </div>
+            
                 <div className="task-container">
                     {
                         tasks.map(task => (
                             <div key={task.id} className="task-item">
-                                <input type="checkbox" id="note"  checked={task.completed} onChange={() => toggleCompleted(task.id)}/>
-                                <label htmlFor="note" className={task.completed ? "completed" : ""}>
-                                    {task.text}
-                                </label>
-                                <button onClick={() => deleteTask(task.id)}>Delete</button>
-                                <button onClick={() => editTask(task)}>Edit</button>
+                                
+                                <div className="checkbox-wrapper-1">
+                                    <input id="checkbox-filled-1" className="checkbox-1" type="checkbox" checked={task.completed} onChange={() => toggleCompleted(task.id)}/>
+                                    <label htmlFor="checkbox-filled-1"  className="task-text" id={task.completed ? "completed" : ""}>
+                                        {task.text}
+                                    </label>
+                                </div>  
+                            
+                                <div className='button-container'>
+                                    <span className='btn-update' onClick={() => deleteTask(task.id)}><i class="fa-solid fa-trash-can"></i></span>
+                                    <span className='btn-update' onClick={() => editTask(task)}><i class="fa-solid fa-pen"></i></span>
+                                </div>
+                                
                             </div>     
                         )) 
                     }
                 </div>
             </div>
+            
         </>   
     );
 }

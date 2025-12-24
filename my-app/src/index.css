@@ -1,12 +1,221 @@
 :root {
+  margin: 0;
+  padding: 0;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
- 
+  box-sizing: border-box;
+
+  --white-color: #F7F7F7;
+  --purple-color: #6C63FF;
+  --dark-purple: #0d01f8;
+  --black-color: #252525;
+  --gary-color: #CDCDCD;
+  --dark-gary: #a7a7a7;
 }
 
-.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
+body {
+  margin-top: 5rem;
+  background-color: var(--white-color);
+  width: 100vw;
+  overflow-x: hidden; 
 }
+.todo-wrapper {
+  width: 100%;
+  max-width: 50rem; 
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.title {
+  color: var(--black-color);
+  text-align: center;
+}
+
+.input-container {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.input-container input {
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  flex: 1; /* input takes available space */
+  border-color: var(--purple-color);
+}
+
+.input-container input:focus {
+  border-color: var(--dark-purple);
+  outline: none;
+}
+
+.btn-add {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: var(--purple-color);
+  border-radius: 8px;
+  border: none;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+#completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.task-item {
+  width: 100%;
+  max-width: 80%;
+  padding: 15px;
+  border-bottom: solid 1px var(--purple-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.task-text {
+  flex: 1; /* Take up remaining space */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+  font-weight: 500;
+  max-width: 100%; 
+}
+
+.button-container {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-update {
+  color: var(--gary-color);
+  cursor: pointer;
+}
+
+.btn-update:hover {
+  color: var(--dark-gary);
+}
+
+/* checkbox*/
+.checkbox-wrapper-1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.checkbox-wrapper-1 .checkbox-1 {
+   --active: #6C63FF;
+   --active-inner: #fff;
+   --focus: 2px #0d01f8;
+   --border: #a6a2b6;
+   --border-hover: #352377;
+   --background: #F7F7F7;;
+   --disabled: #b2bbbf;
+   --disabled-inner: #b2bbbf;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   height: 21px;
+   outline: none;
+   display: inline-block;
+   vertical-align: top;
+   position: relative;
+   margin: 0;
+   cursor: pointer;
+   border: 1px solid var(--bc, var(--border));
+   background: var(--b, var(--background));
+   transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+}
+
+.checkbox-wrapper-1 .checkbox-1:after {
+   content: "";
+   display: block;
+   left: 0;
+   top: 0;
+   position: absolute;
+   transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+}
+
+.checkbox-wrapper-1 .checkbox-1:checked {
+   --b: var(--active);
+   --bc: var(--active);
+   --d-o: .3s;
+   --d-t: .6s;
+   --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+}
+
+.checkbox-wrapper-1 .checkbox-1:disabled {
+   --b: var(--disabled);
+   cursor: not-allowed;
+   opacity: 0.9;
+}
+
+.checkbox-wrapper-1 .checkbox-1:disabled:checked {
+   --b: var(--disabled-inner);
+   --bc: var(--border);
+}
+
+.checkbox-wrapper-1 .checkbox-1:disabled + label {
+   cursor: not-allowed;
+}
+
+.checkbox-wrapper-1 .checkbox-1:hover:not(:checked):not(:disabled) {
+   --bc: var(--border-hover);
+}
+
+.checkbox-wrapper-1 .checkbox-1:focus {
+   box-shadow: 0 0 0 var(--focus);
+}
+
+.checkbox-wrapper-1 .checkbox-1:not(.switch) {
+   width: 21px;
+   border-radius: 4px;
+}
+
+.checkbox-wrapper-1 .checkbox-1:not(.switch):after {
+   opacity: var(--o, 0);
+   width: 5px;
+   height: 9px;
+   border: 2px solid var(--active-inner);
+   border-top: 0;
+   border-left: 0;
+   left: 7px;
+   top: 4px;
+   transform: rotate(var(--r, 20deg));
+}
+
+.checkbox-wrapper-1 .checkbox-1:not(.switch):checked {
+   --o: 1;
+   --r: 43deg;
+}
+
+.checkbox-wrapper-1 .checkbox-1 + label {
+   display: inline-block;
+   vertical-align: middle;
+   cursor: pointer;
+   margin-left: 8px;
+}
+
+.checkbox-wrapper-1 * {
+   box-sizing: inherit;
+}
+
+.checkbox-wrapper-1 *:before,
+.checkbox-wrapper-1 *:after {
+   box-sizing: inherit;
+}
+
+
 
 
 
